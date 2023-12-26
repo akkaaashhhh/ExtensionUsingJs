@@ -1,0 +1,28 @@
+body{
+    margin: 0;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input{
+    width: 100%;
+    display: block;
+    margin-bottom: 5px;
+    padding: 10px;
+    height: 1.5rem;
+    box-sizing: border-box;
+    border: 1px solid green;
+}
+button{
+    color: White;
+    background-color: green;
+    padding: 10px 20px;
+    border: none;
+}
+.leadList{
+    list-style: none;
+    padding-left: 0 ;
+}
+.leadLinks{
+    color: green;
+}
