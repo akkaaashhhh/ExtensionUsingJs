@@ -1,34 +1,43 @@
-body{
+body {
     margin: 0;
     padding: 10px;
     font-family: Arial, Helvetica, sans-serif;
+    min-width: 400px;
 }
 
-input{
+input {
     width: 100%;
-    display: block;
-    margin-bottom: 5px;
     padding: 10px;
-    height: 1.5rem;
     box-sizing: border-box;
-    border: 1px solid green;
+    border: 1px solid #5f9341;
+    margin-bottom: 4px;
 }
-button{
-    color: rgb(13, 152, 13);
-    background-color: white;
+
+button {
+    background: #5f9341;
+    color: white;
     padding: 10px 20px;
-    border: 3px solid rgb(48, 200, 48);
+    border: 1px solid #5f9341;
+    font-weight: bold;
 }
-#delete-btn{
-    color: rgb(93, 22, 22);
-    background-color: white;
-    padding: 10px 20px;
-    border: 3px solid red;
+
+#delete-btn {
+    background: white;
+    color: #5f9341;
 }
-.leadList{
+
+ul {
+    margin-top: 20px;
     list-style: none;
-    padding-left: 0 ;
+    padding-left: 0;
 }
-.leadLinks{
-    color: green;
+
+li {
+    margin-top: 5px;
 }
+
+a {
+    color: #5f9341;
+}
+
+

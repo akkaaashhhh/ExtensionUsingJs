@@ -1,38 +1,47 @@
 let myLeads = []
+const inputEl = document.getElementById("input-el")
+const inputBtn = document.getElementById("input-btn")
+const ulEl = document.getElementById("ul-el")
+const deleteBtn = document.getElementById("delete-btn")
+const leadsFromLocalStorage = JSON.parse( localStorage.getItem("myLeads") )
+const tabBtn = document.getElementById("tab-btn")
 
-const inputEl = document.querySelector("#input-el")
-
-const inputBtn =  document.getElementById("input-btn")
-
-let dataFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
-
-if(dataFromLocalStorage){
-    myLeads = dataFromLocalStorage
-    render()
+if (leadsFromLocalStorage) {
+    myLeads = leadsFromLocalStorage
+    render(myLeads)
 }
 
-inputBtn.addEventListener("click",function(){
-    let lead = inputEl.value 
-    myLeads.push(lead)
-    localStorage.setItem("myLeads",JSON.stringify(myLeads))
-    render()
-    inputEl.value=""
+tabBtn.addEventListener("click", function(){    
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        myLeads.push(tabs[0].url)
+        localStorage.setItem("myLeads", JSON.stringify(myLeads) )
+        render(myLeads)
+    })
 })
 
-function render(){
-    lead=""
-    for(let i=0;i<myLeads.length;i++){
-        lead+=`<li>
-                    <a class="leadLinks" href="${myLeads[i]}">
-                        ${myLeads[i]}
-                    </a>
-                </li>`
+function render(leads) {
+    let listItems = ""
+    for (let i = 0; i < leads.length; i++) {
+        listItems += `
+            <li>
+                <a target='_blank' href='${leads[i]}'>
+                    ${leads[i]}
+                </a>
+            </li>
+        `
     }
-    document.getElementById("leads").innerHTML=lead
+    ulEl.innerHTML = listItems
 }
 
-document.getElementById("delete-btn").addEventListener("click",function(){
-    myLeads=[]
-    dataFromLocalStorage=null;
-    render()
+deleteBtn.addEventListener("dblclick", function() {
+    localStorage.clear()
+    myLeads = []
+    render(myLeads)
+})
+
+inputBtn.addEventListener("click", function() {
+    myLeads.push(inputEl.value)
+    inputEl.value = ""
+    localStorage.setItem("myLeads", JSON.stringify(myLeads) )
+    render(myLeads)
 })
